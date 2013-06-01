@@ -1,0 +1,35 @@
+{
+  "name": "active-model",
+  "description": "DOM inspired active data model framework",
+  "version": "0.0.1",
+  "author": {
+    "name": "Mark McKenna",
+    "email": "mark.denis.mckenna@gmail.com"
+  },
+  "contributors": [
+    {
+    "name": "Mark McKenna",
+    "email": "mark.denis.mckenna@gmail.com"
+    }
+  ],
+  "dependencies": {
+  },
+  "devDependencies": {
+  },
+  "keywords": [
+    "framework",
+    "dom",
+    "model",
+    "data-model",
+    "event",
+    "evented"
+  ],
+/*  "repository": {
+    "type": "git",
+    "url": "git://github.com/visionmedia/express"
+  },*/
+  "main": "index",
+  "engines": {
+    "node": "*"
+  },
+}
