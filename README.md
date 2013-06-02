@@ -1,7 +1,7 @@
 active-model
 ============
 
-A DOM-like data model implementation for node.js.
+A data-driven programming model for node.js
 
 example
 =======
@@ -23,27 +23,19 @@ orders.js
 	', function(orders) {
 		console.log('Found ' + orders.select('/orders/order').length + ' orders');
 		console.log('Online products: ' + JSON.stringify(orders.select('.online-only')));
-		var widget = orders.select('//product[@id = "widget"]');
-		widget.addElement('description', )
+		var widget = orders.select('//product[@id = "widget"]'); // or just #widget
+		widget.add('description', 'This is a widget.');
+
+		// Monitor future changes to this widget
+		widget.changed(function(node, property, oldval, newval) {
+			console.log("Somebody changed the widget's" + property + " from " + oldval + " to " + newval + "!");
+		})
 	});
 
-
-assembled document (XML representation)
----------------------------------------
-	<orders>
-		<order id='1' class='personal bulk'>
-			<product class='online-only'>
-				<name>A widget</name>
-				<cost currency='USD'>100.0</cost>
-			</product>
-		</order>
-	</orders>
-
 features
---------
+========
 
-* Differentiation between ownership and reference
-* Events for triggered operations on model components
-* Indexed id, class properties for fast searchability
-* DOM-like node collectors
-* (?) jQuery interoperability (or at least, jQuery workalike)
+	* Parse any DOM-compatible document into a data model, and serialize the data model back to disk.
+	* Listen for any modification of the data model
+	* Uses JSDOM for internal management of data
+	* Uses Sizzle for powerful CSS selector-based data querying and identification
