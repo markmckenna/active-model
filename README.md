@@ -10,16 +10,21 @@ orders.js
 ---------
 	var model = require('active-model');
 
-	new Model('orders', [
-		new Element('order', { id: '1', class: 'personal bulk' }, [
-			new Element('product', { class: 'online-only' }, [
-				new Element('name', 'A widget'),
-				new Element('cost', { currency: 'USD' }, 100.0)
-			]),
-			new Element('quantity', 100)
-		]); // name, value, attributes
-	], function(model) {
-		console.log('Found ' + orders.find('order').length + ' orders');
+	model.parse('
+		<orders>
+			<order id='1', class='personal bulk'>
+				<product id='widget' class='online-only'>
+					<name>A widget</name>
+					<cost currency='USD'>100.00</cost>
+				</product>
+				<quantity>100</quantity>
+			</order>
+		</orders>
+	', function(orders) {
+		console.log('Found ' + orders.select('/orders/order').length + ' orders');
+		console.log('Online products: ' + JSON.stringify(orders.select('.online-only')));
+		var widget = orders.select('//product[@id = "widget"]');
+		widget.addElement('description', )
 	});
 
 

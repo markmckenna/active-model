@@ -1,21 +1,26 @@
 {
   "name": "active-model",
-  "description": "DOM inspired active data model framework",
+  "description": "A data-driven programming model for node.js",
   "version": "0.0.1",
-  "author": {
-    "name": "Mark McKenna",
-    "email": "mark.denis.mckenna@gmail.com"
-  },
+  "author": "Mark McKenna <mark.denis.mckenna@gmail.com>",
+  "maintainers": [
+    "Mark McKenna <mark.denis.mckenna@gmail.com>"
+  ],
   "contributors": [
-    {
-    "name": "Mark McKenna",
-    "email": "mark.denis.mckenna@gmail.com"
-    }
+    "Mark McKenna <mark.denis.mckenna@gmail.com>"
   ],
   "dependencies": {
+    "node-sizzle": "*",
+    "jsdom": "*"
   },
   "devDependencies": {
   },
+  "licenses": [
+        {
+            "type": "MIT",
+            "url": "http://opensource.org/licenses/MIT"
+        }
+    ],
   "keywords": [
     "framework",
     "dom",
@@ -24,11 +29,13 @@
     "event",
     "evented"
   ],
-/*  "repository": {
+  "repository": {
     "type": "git",
-    "url": "git://github.com/visionmedia/express"
-  },*/
+    "url": "git://github.com/markmckenna/active-model"
+  },
+
   "main": "index",
+
   "engines": {
     "node": "*"
   },
