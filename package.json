@@ -11,16 +11,17 @@
   ],
   "dependencies": {
     "node-sizzle": "*",
+    "node-xml": "*",
     "jsdom": "*"
   },
   "devDependencies": {
   },
   "licenses": [
-        {
-            "type": "MIT",
-            "url": "http://opensource.org/licenses/MIT"
-        }
-    ],
+    {
+        "type": "MIT",
+        "url": "http://opensource.org/licenses/MIT"
+    }
+  ],
   "keywords": [
     "framework",
     "dom",
@@ -38,5 +39,5 @@
 
   "engines": {
     "node": "*"
-  },
+  }
 }
