@@ -1,0 +1,46 @@
+What Sizzle targets:
+	sizzleInit(window) {
+		Window: {
+			document: <Node>
+		}
+	}
+
+	Document: { // child of Node?
+		documentElement: <Node>
+		createRange: function() // returns Range
+		createElement: function(name)
+	}
+
+	Range: {
+		setStart(Node, pos)
+		setEnd(Node, pos)
+	}
+
+	Node: {
+		nodeName: <string>
+		nodeType: <integer>, // includes 1 (empty?), 9, 3 (text), 4 (CDATA), 8 (comment)
+		nodeValue: <?>
+		parentNode: <Node>,
+		getElementsByTagName: function(pattern), // <pattern> includes '*'
+		getElementById: function(id), // <string>
+		getElementsByName: function(name), // <string>
+		previousSibling: <element>,
+		nextSibling: <element>
+		getAttribute: function(<string>),
+		className: <string>
+		disabled: <boolean>
+		checked: <boolean> // kinda HTML specific, isn't it?
+		type: <string, enumerated; HTML form input elements>
+		selectedIndex: <integer>
+		firstChild: <Node>
+		textContent: <string, optional>
+		innerText: <string, optional>
+		innerHTML: <string> // parsed to XML somehow/somewhen?
+		childNodes: <list of Node>,
+		ownerDocument: <Document>
+		insertBefore: function(<Node>, <Node>)
+	}
+
+* what does attrMap do? see 305
+* does attrHandle take a DOM element? if so look at 311	
+* is checkSet a DOM element? see 338
