@@ -1,6 +1,15 @@
 var should = require('should');
 
-describe('index', function() {
+describe('Model', function() {
 	var Model = require('..');
-	var model = new Model('test.xml');
-})
+	var model = null;
+
+	it('should asynchronously load itself on creation', function(done) {
+		model = new Model('test.xml', function() {
+			model.should
+			done();
+		});
+	});
+
+
+});

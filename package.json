@@ -12,7 +12,8 @@
   "dependencies": {
     "node-sizzle": "*",
     "node-xml": "*",
-    "jsdom": "*"
+    "jsdom": "*",
+    "underscore":"*"
   },
   "devDependencies": {
     "mocha": "*",
