@@ -52,30 +52,6 @@ exports = module.exports = function Model(options, done) {
 		done(this.NotYetImplemented);
 	}
 
-
-	this.list = function(query) {
-		// TODO: Parse query as an XPath-like pathing string.
-		//
-		// Return a lazy generator (with prototype activeModel.Generator) representing the data matching the query.
-		// Each call to the generator returns the next match in sequence.
-		// When results are exhausted, all calls return undefined.
-		// The function has a property 'count' which indicates how many remaining elements there are; null if unknown.
-		// If a result is a literal value, the literal value is returned.
-		// If a result is an array of k entries, an array with k elements is returned, where each literal entry is itself,
-		// 	 and each nonliteral entry is another lazy function.
-		// If a result is an object value, an object with the same property keys is returned, where each property with a literal value has
-		//   that value, each property with a function value has that function, and each array or object value is another lazy generator function.
-		// Note that the model cannot be mutated through these calls.
-
-		// Examples, given contents of (test/test.json):
-		//		Query 							Call 1 											Call 2
-		//		model.list('/')					{ surname: 'Graydon', children: <Generator> }		undefined
-		//		model.list('/surname')				'Graydon'										undefined
-		//		model.list('/children')			{ name: 'Mark', age: 34 }						{ name: 'Alex', age: 25 }
-		//		model.list('/children[0]')		{ name: 'Mark', age: 34 }						undefined
-		//		model.list('/children/*/name')	'Mark'											'Alex'
-	}
-
 	this.get = function(query) {
 		// Sort of a one-shot version of 'list', above.  Returns (shallow) data, not a generator.  Generally a briefer way to get the data
 		// that <list> returns above, though not always (compare '/children').
@@ -85,8 +61,10 @@ exports = module.exports = function Model(options, done) {
 		//		model.get('/')					{ surname: 'Graydon', children: <Generator> }
 		//		model.get('/surname')				'Graydon'
 		//		model.get('/children')			[ <Generator>, <Generator>, <Generator> ]
-		//		model.get('/children[0]')		{ name: 'Mark', age: 34 }
+		//		model.get('/children/0')		{ name: 'Mark', age: 34 }
 		//		model.get('/children/*/name')	[ 'Mark', 'Alex', 'Andrew' ]
+
+		var cur = _data;
 	}
 
 	// TODO: the Generator instances buried in shallow trees, above, should have facilities similar to this object--for calling get(), list(), etc. on.
@@ -114,6 +92,64 @@ exports = module.exports = function Model(options, done) {
 	this.load(done);
 }
 
+
+function Query(model, path) {
+	// TODO: Pass instance to self into query language interpreter to be filled up
+
+	var _model = model;
+	var _path = path;
+
+	get model() { return _model; }
+	get path() { return _path; }
+
+	// TODO: value below can be a function which gets called with the result being modified relative to in each case.
+
+	function get(query) { 
+		// TODO: as per base-level query but starting with this result set (interpreted as an array)
+	}
+
+	function clone() {
+		// TODO: Return a deep copy of the selected subtree
+	}
+
+	function add(value) {
+		// TODO: add the given value to the set of results matched by the query
+	}
+
+	function before(value) {
+		// TODO: add the given value before each element in the query
+	}
+
+	function after(value) {
+		// TODO: add the given value after each element in the query
+	}
+
+	function replace(value) {
+		// TODO: replace all matches to this query with <value> without parsing it first.
+		// if value is an object or array it is attached as-is to the model and fires all appropriate events.
+		// fires events as per json() above.
+	}
+
+	function remove() {
+		// TODO: Eliminate all items matching this query.
+		// will fire delete events for any objects in the deleted tree.
+	}
+
+	function empty() {
+		// TODO: Eliminate all children of all items matching this query.
+	}
+
+	function json(value) {
+		// TODO: parse <value> as JSON and replace all matches to this query with it.
+		// will compare the structures of the two trees and fire modify events for modified objects, delete
+		// events for deleted objects, and add events for new objects.
+	}
+
+	function on(action, cb) {
+		// TODO: Hook up a function to be invoked when the given action (add, modify, delete) is seen
+		// cb matches function(event), where <event> indicates what happened
+	}
+}
 
 exports.prototype.NotYetImplemented = { 
 	name: "NotYetImplemented", 
